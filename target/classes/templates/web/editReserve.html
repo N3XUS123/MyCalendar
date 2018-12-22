@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/layout}">
+<head>
+<title>Administración</title>
+<style>
+h1 {
+	text-align: center;
+	margin-bottom: -120px;
+}
+
+button {
+	radio-button: 20px;
+}
+
+.form-container {
+	background-color: #fff;
+	max-width: 800px;
+	margin: 160px auto 0;
+	padding: 40px;
+	color: #858b8e;
+	box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container .form-group {
+	width: 40%;
+	display: inline-block;
+}
+
+.form-container .first {
+	margin-right: 10%;
+}
+
+</style>
+</head>
+<body class="animsition page-content--bgf7">
+	<div layout:fragment="content" th:remove="tag">
+		<h1>Registro Nueva Reserva</h1>
+
+		<div class="form-container">
+			<form name="formulario" method="post" th:action="@{/web/reserveEdited/{id}(id=${reserva.id})}" th:object="${reservaPeriodica}">
+				<div class="form-group first">
+					<label for="aula">Aula:</label> 
+					<select class="form-control" id="exampleFormControlSelect1" th:field="*{aulaId}">
+						<option th:each="aula : ${listaAulas}" th:value="${aula.id}" th:text="${aula.nombre}"></option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="fecha">Fecha de la reserva:</label> 
+					<input type="date" name="fecha" class="form-control" id="fecha" th:value="*{dia}" th:field="*{dia}" required>
+				</div>
+				<div class="form-group first">
+					<label for="horaInicio">Hora de inicio:</label> 
+					<input type="time" name="horaInicio" class="form-control" min="06:00" max="20:00" step="1800" th:value="*{horaInicio}" th:field="*{horaInicio}" required>
+				</div>
+				<div class="form-group">
+					<label for="horaFin">Hora de finalización:</label> 
+					<input type="time" name="horaFin" class="form-control" min="06:00" max="20:00" step="1800" th:value="*{horaFin}" th:field="*{horaFin}" required>
+				</div>
+				<button class="btn btn-success text-right" type="submit">Hacer reserva</button>
+			</form>
+
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+</html>

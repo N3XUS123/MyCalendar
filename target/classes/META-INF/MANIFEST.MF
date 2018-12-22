@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: palma
+Build-Jdk: 10.0.2
+Implementation-Title: Calendar
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.salesianostriana
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/calendar
+Created-By: Maven Integration for Eclipse
+

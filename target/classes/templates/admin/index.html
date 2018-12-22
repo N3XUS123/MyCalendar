@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/adminLayout}">
+<head>
+    <title>Administración</title>
+</head>
+<body class="animsition page-content--bgf7">
+<div layout:fragment="content" th:remove="tag">
+    <div class="page-wrapper">
+
+		<!-- PAGE CONTENT-->
+		<div class="page-content--bgf7">
+			<!-- WELCOME-->
+			<section class="welcome pt-5 p-t-10">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12">
+							<h1 class="title-4">
+								Bienvenido de nuevo,  <span th:text="${#httpServletRequest.remoteUser}"></span>
+							</h1>
+							<hr class="line-seprate">
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- END WELCOME-->
+
+			<!-- STATISTIC-->
+			<section class="statistic statistic2">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-3">
+							<div class="statistic__item statistic__item--green">
+								<h2 class="number" th:text="${numUsers}"></h2>
+								<span class="desc">Usuarios registrados</span>
+								<div class="icon">
+									<i class="zmdi zmdi-account-o"></i>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="statistic__item statistic__item--orange">
+								<h2 class="number" th:text="${numAulas}"></h2>
+								<span class="desc">Aulas</span>
+								<div class="icon">
+									<i class="zmdi zmdi-store"></i>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="statistic__item statistic__item--blue">
+								<h2 class="number" th:text="${numReservas}	"></h2>
+								<span class="desc">Reservas de aulas</span>
+								<div class="icon">
+									<i class="zmdi zmdi-calendar-note"></i>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-lg-3">
+							<div class="statistic__item statistic__item--red">
+								<h2 class="number" th:text="${numVerificados}"></h2>
+								<span class="desc">Usuarios pendientes de verificar</span>
+								<div class="icon">
+									<i class="zmdi zmdi-accounts-add"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- END STATISTIC-->
+		</div>
+
+	</div>
+    
+</div>
+</body>
+</html>

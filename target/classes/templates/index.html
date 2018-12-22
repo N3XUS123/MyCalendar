@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6 lt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7 lt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8 lt8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8" />
+        <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">  -->
+        <title>Login & Registro</title>
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+		<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+        <link rel="stylesheet" href="css/login.css">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+           <header></header>
+            <section>				
+                <div id="container_demo" >
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <form  th:action="@{/login}" method="post" autocomplete="on"> 
+                            <div th:if="${param.logout}">
+								<div class="alert alert-info">Has cerrado sesión.</div>
+							</div>
+                                <h1 class="color-black" th:text="#{login.inicio}">Iniciar sesión</h1> 
+                                <p> 
+                                    <label for="username" class="uname" th:text="#{login.nombreUsuario}"> Nombre de usuario </label>
+                                    <input id="username" name="username" required="required" type="text" placeholder="Usuario"/>
+                                </p>
+                                <p> 
+                                    <label for="password" class="youpasswd" th:text="#{login.contraseña}"> Contraseña </label>
+                                    <input id="password" name="password" required="required" type="password" placeholder="••••••" /> 
+                                </p>
+                                <p class="keeplogin"> 
+									<input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" /> 
+									<label for="loginkeeping" th:text="#{login.mantenerConectado}">Mantenerme conectado</label>
+                                </p>
+                                <p class="login button"> 
+                               		<input type="submit" name="login-submit" id="login-submit" class="form-control btn btn-info" value="Conectar">
+								</p>
+                                <p class="change_link">
+									¿ Aún no eres miembro ?
+									<a href="#toregister" class="to_register" th:text="#{login.registrate}">Registrate</a>
+								</p>
+                            </form>
+                        </div>
+
+                        <div id="register" class="animate form">
+                            <form autocomplete="off" th:action="@{registro}" th:object="${cuenta}" method="post" role="form"> 
+                                <h1> Crear cuenta </h1> 
+                                <p> 
+                                    <label for="usernamesignup" class="uname" >Nombre de usuario</label>
+                                    <input th:field="*{username}" id="usernamesignup" name="usernamesignup" required="required" type="text" placeholder="Usuario" />
+                                </p>
+                                <p> 
+                                    <label for="emailsignup" class="youmail"  >Email</label>
+                                    <input th:field="*{email}" id="emailsignup" name="emailsignup" required="required" type="email" placeholder="cuenta@dominio.com"/> 
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup" class="youpasswd" >Contraseña</label>
+                                    <input th:field="*{password}" id="passwordsignup" name="passwordsignup" required="required" type="password" placeholder="••••••"/>
+                                </p>
+                                <p> 
+                                    <label for="passwordsignup_confirm" class="youpasswd" >Confirmar contraseña</label>
+                                    <input id="passwordsignup_confirm" name="passwordsignup_confirm" required="required" type="password" placeholder="••••••"/>
+                                </p>
+                                <p class="signin button"> 
+									<input type="submit" value="Registrar"/> 
+								</p>
+                                <p class="change_link">  
+									¿Ya eres miembro?
+									<a href="#tologin" class="to_register"> Ve a iniciar sesión </a>
+								</p>
+                            </form>
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
+</html>

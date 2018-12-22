@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	layout:decorate="~{fragments/adminLayout}">
+<head>
+<title>Administración Usuarios</title>
+</head>
+<body class="animsition page-content--bgf7">
+	<div layout:fragment="content" th:remove="tag">
+		<section class="p-t-20">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h3 class="title-5 m-b-35" th:text="#{usuario.usuarios}">Usuarios</h3>
+					</div>
+					<div class="table-responsive table-responsive-data2">
+						<table class="table table-data2">
+							<thead>
+								<tr>
+									<th th:text="#{usuario.nombre}">Nombre</th>
+									<th th:text="#{usuario.email}">Email</th>
+									<th th:text="#{usuario.verificado}">Verificado</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="usuario : ${lista}" class="tr-shadow">
+									<td th:text="${usuario.username}"></td>
+									<td th:text="${usuario.email}"></td>
+									<td><span th:if="${usuario.enabled}" class="text-success">Si</span><span
+										th:if="${!usuario.enabled}" class="text-danger">No</span></td>
+									<td>
+										<div class="table-data-feature float-right">
+											<a th:href="@{/admin/usuarios/validar/{username}(username=${usuario.username})}" href="#" title="Privilegios" class="item">
+												<i th:if="${!usuario.enabled}" class="zmdi zmdi-plus-circle text-success" title="Verificar"></i>
+												<i th:if="${usuario.enabled}" class="zmdi zmdi-minus-circle text-danger" title="Suspender"></i>
+											</a>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+</body>
+</html>

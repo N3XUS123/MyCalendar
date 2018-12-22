@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{fragments/adminLayout}">
+
+<head>
+    <title>Administración Aulas</title>
+</head>
+
+<body class="animsition page-content--bgf7">
+    <div layout:fragment="content" th:remove="tag">
+        <!-- modal agregar -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <form method="post" th:action="@{/admin/addAula}">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{aula.nueva}">Nueva Aula</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="hidden" th:field="${aula.id}">
+                                <label for="nombre" class=" form-control-label" th:text="#{aula.nombre}">Nombre del aula</label>
+                                <input type="text" id="nombre" th:field="${aula.nombre}" placeholder="Introduzca el nombre del Aula" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{aula.cerrar}">Cerrar</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-dot-circle-o"></i>Añadir
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Modal agregar -->
+        <!-- modal editar -->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="EditModalTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document" id="ajaxContent">
+                <div class="modal-content" th:fragment="aulaEdit" th:if="${aulaEdit!=null}">
+                    <form method="post" th:object="${aulaEdit}" th:action="@{/admin/addAula}">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle" th:text="#{aula.nueva}">Nueva Aula</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="hidden" th:field="${aulaEdit.id}">
+                                <label for="nombre" class=" form-control-label" th:text="#{aula.nombre}">Nombre del aula</label>
+                                <input type="text" id="nombre" th:field="${aulaEdit.nombre}" placeholder="Introduzca el nombre del Aula" required class="form-control">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" th:text="#{aula.cerrar}">Cerrar</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fa fa-dot-circle-o" th:text="#{aula.añadir}"></i>Añadir
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Modal editar -->
+
+
+        <section class="p-t-20">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-5 m-b-35">Aulas</h3>
+                        <div class="table-data__tool">
+                            <div class="table-data__tool-right">
+                                <!--button modal-->
+                                <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#exampleModalCenter">
+                                    <i class="zmdi zmdi-plus"></i>Agregar aula
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive table-responsive-data2">
+                        <table class="table table-data2">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="aula : ${lista}" class="tr-shadow">
+                                    <td th:text="${aula.nombre}"></td>
+                                    <td>
+                                        <div class="table-data-feature float-right">
+                                            <button type="button" class="editar item float-right zmdi zmdi-edit" th:value="${aula.id}" data-toggle="modal" data-target="#editModal"></button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="table-data-feature float-right">
+                                            <a th:href="@{/admin/aulas/delete/{id}(id=${aula.id})}" class="item" title="Delete" >
+                                                <i class="item zmdi zmdi-delete pl-2 pt-1"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+</body>
+
+</html>
